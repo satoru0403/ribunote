@@ -27,49 +27,44 @@ main{padding:18px}.page{display:none}.page.active{display:block}
 nav{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:720px;min-height:69px;background:rgba(255,255,255,.97);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:20;padding-bottom:env(safe-area-inset-bottom);backdrop-filter:blur(12px)}
 nav button{border:0;background:transparent;font-size:11px;color:var(--muted);min-height:65px}nav button.active{color:var(--purple);font-weight:900}.ico{display:block;font-size:19px;margin-bottom:3px}
 @media(min-width:650px){main{padding:24px}.hero{padding:32px}.hero h1{font-size:35px}.quick button{font-size:13px}}
+
+.article-open{border:0;background:transparent;text-align:left;padding:0;color:var(--ink);font:inherit;cursor:pointer;width:100%}.article-open:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}.article-open .title{font-size:16px}.feature>div:last-child{min-width:0}.article-open:hover .title{color:var(--purple)}.source-link{display:inline-block;color:var(--purple);font-weight:800;margin-top:12px;line-height:1.6}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filters button{border:1px solid var(--line);border-radius:999px;background:#fff;padding:10px 14px;color:var(--purple)}.filters button.active{background:var(--purple);color:#fff}.detail-meta{margin:20px 0}.detail-meta dt{font-size:12px;color:var(--muted);margin-top:16px}.detail-meta dd{margin:5px 0;line-height:1.7;overflow-wrap:anywhere}.detail-title{font-size:25px;line-height:1.5}.backbtn{border:0;background:transparent;color:var(--purple);padding:10px 0}.article-summary{font-size:14px;line-height:1.9}.checked{margin:8px 0 16px}.search-label{font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="app">
 <header>
 <div class="top"><div><div class="brand">♡ RIBUNOTE</div><div class="sub">クロミの「いま」が見つかる。非公式情報メディア｜開発版</div></div><button class="searchbtn" id="searchToggle" aria-label="検索">⌕</button></div>
-<div class="searchbox" id="searchBox"><input class="field" id="siteSearch" type="search" placeholder="新商品・コラボ・グッズを検索"></div>
+<div class="searchbox" id="searchBox"><label class="search-label" for="siteSearch">掲載記事を検索</label><input class="field" id="siteSearch" type="search" placeholder="記事名・ブランド・キーワード"></div>
 </header>
 <main>
 <section class="page active" id="home">
 <div class="hero"><div class="eyebrow">TODAY'S PICK</div><h1>今日のクロミ情報を<br>まとめてチェック。</h1><p>新商品・コラボ・イベント・発売日を、ひとつの場所で探しやすく。RIBUNOTEは情報を整理して届ける非公式メディアです。</p></div>
 
 <div class="quick">
-<button data-go="news"><span>✦</span>新商品</button>
-<button data-go="news"><span>♡</span>コラボ</button>
-<button data-go="news"><span>☆</span>イベント</button>
+<button data-go="news" data-filter="新商品"><span>✦</span>新商品</button>
+<button data-go="news" data-filter="コラボ"><span>♡</span>コラボ</button>
+<button data-go="news" data-filter="イベント"><span>☆</span>イベント</button>
 <button data-go="calendar"><span>▣</span>発売日</button>
 </div>
 
 <div class="section-head"><h2>最新情報</h2><button class="more" data-go="news">すべて見る →</button></div>
-<div class="card feature"><div class="thumb">♡</div><div><span class="badge">NEW</span><div class="title">新商品情報のサンプル</div><div class="muted">公開版では発売日・価格・販売場所・公式情報源を整理して表示します。</div></div></div>
-<div class="card feature"><div class="thumb">✦</div><div><span class="badge">COLLAB</span><div class="title">コラボ情報のサンプル</div><div class="muted">情報の最終確認日も表示し、古い情報との混同を防ぎます。</div></div></div>
-
-<div class="section-head"><h2>発売カレンダー</h2><button class="more" data-go="calendar">カレンダー →</button></div>
-<div class="card release"><div class="datebox"><small>OCT</small><b>15</b></div><div><div class="title">新作グッズA</div><div class="muted">サンプルデータ｜発売予定</div></div></div>
-<div class="card release"><div class="datebox"><small>OCT</small><b>22</b></div><div><div class="title">コラボ商品B</div><div class="muted">サンプルデータ｜発売予定</div></div></div>
-
-<div class="section-head"><h2>注目コンテンツ</h2></div>
-<div class="card"><span class="badge">FEATURE</span><div class="title">今月チェックしたいクロミ情報</div><div class="muted">複数の情報をテーマ別に整理する特集エリアです。</div></div>
-
-<div class="section-head"><h2>人気記事</h2></div>
-<div class="card rank"><div class="rankno">1</div><div><div class="title">人気記事ランキングのサンプル</div><div class="muted">閲覧データを使ったランキングを今後実装します。</div></div></div>
-<div class="card rank"><div class="rankno">2</div><div><div class="title">発売予定まとめ</div><div class="muted">月別・カテゴリー別に探せる構成にします。</div></div></div>
-
+<p class="notice checked">公式情報を確認して編集｜最終確認：2026年10月10日（日本時間）</p>
+<div id="homeArticles"></div>
+<div class="section-head"><h2>次の発売予定</h2><button class="more" data-article="halloween">詳細を見る →</button></div>
+<div class="card release"><div class="datebox"><small>OCT</small><b>16</b></div><div><div class="title">フレンドリーハロウィン</div><div class="muted">2026年10月16日〜31日販売予定</div></div></div>
+<div class="section-head"><h2>気になるシリーズ</h2></div>
+<div class="card"><button class="article-open" data-article="black-mode"><span class="badge">PICK UP</span><div class="title">まっくろクロミモードシリーズ</div><div class="muted">発売情報・代表商品の価格をチェック →</div></button></div>
 <div class="section-head"><h2>グッズを探す</h2><button class="more" data-go="goods">検索する →</button></div>
 <div class="card"><div class="title">カテゴリー・価格から絞り込み</div><div class="muted">ぬいぐるみ、ファッション、バッグ、文房具、コスメなどから探せるようにします。</div></div>
 
 <div class="promo"><b>RIBUNOTEについて</b><p>クロミに関する新商品・コラボ・イベント等を独自に整理する非公式メディアです。株式会社サンリオおよび関連企業が運営する公式サイトではありません。</p></div>
 </section>
 
-<section class="page" id="news"><div class="section-head"><h2>新着情報</h2></div><p class="notice">確認した情報を新しい順に表示するページです。</p><div class="card feature"><div class="thumb">♡</div><div><span class="badge">新商品</span><div class="title">新作グッズ情報</div><div class="muted">発売日・価格・販売場所・公式情報源を掲載予定。</div></div></div><div class="card feature"><div class="thumb">☆</div><div><span class="badge">イベント</span><div class="title">イベント情報</div><div class="muted">開催期間や場所を整理して表示予定。</div></div></div></section>
+<section class="page" id="news"><div class="section-head"><h2>新着情報</h2></div><p class="notice">サンリオの公式発表日が新しい順に掲載しています。自動更新ではありません。最終確認：2026年10月10日（日本時間）。</p><div class="filters" aria-label="記事カテゴリー"><button class="active" data-category="すべて" aria-pressed="true">すべて</button><button data-category="新商品" aria-pressed="false">新商品</button><button data-category="コラボ" aria-pressed="false">コラボ</button><button data-category="イベント" aria-pressed="false">イベント</button></div><p class="notice" id="newsCount" role="status" aria-live="polite"></p><div id="newsArticles"></div></section>
+<section class="page" id="article"><button class="backbtn" id="articleBack">← 一覧に戻る</button><article id="articleContent"></article></section>
 
-<section class="page" id="calendar"><div class="section-head"><h2>発売カレンダー</h2></div><p class="notice">商品データから発売予定を一覧化します。</p><div class="card cal"><div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div><div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div class="hit">15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div class="hit">22</div><div>23</div><div>24</div><div>25</div></div></section>
+<section class="page" id="calendar"><div class="section-head"><h2>発売カレンダー</h2></div><p class="notice">このカレンダーは開発用サンプルです。実際の発売情報は「新着」から各記事をご確認ください。</p><div class="card cal"><div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div><div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div class="hit">15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div class="hit">22</div><div>23</div><div>24</div><div>25</div></div></section>
 
 <section class="page" id="goods"><div class="section-head"><h2>グッズ検索</h2></div><label>カテゴリー<select class="field" id="cat"><option>すべて</option><option>ぬいぐるみ</option><option>ファッション</option><option>バッグ</option><option>文房具</option><option>コスメ</option><option>スマホ用品</option></select></label><label>価格帯<select class="field"><option>指定なし</option><option>〜1,000円</option><option>1,000〜3,000円</option><option>3,000〜5,000円</option><option>5,000円〜</option></select></label><button class="primary" id="goodsSearch">この条件で探す</button><div class="card notice" id="result">現在はUI確認用のサンプルです。</div></section>
 
@@ -84,13 +79,26 @@ nav button{border:0;background:transparent;font-size:11px;color:var(--muted);min
 </nav>
 </div>
 <script>
+
+const articles=[{"id": "branshes", "category": "コラボ", "icon": "♡", "published": "2026-10-09", "title": "branshes × マイメロディ＆クロミのキッズ服", "summary": "パーカーやワンピースなど、秋の子ども服コレクションが登場。ピンク・ラベンダー・ブラックを使ったアイテムがそろいます。", "timing": "発売中（公式発表時点）", "price": "フードパーカー 4,620円／袖レーストレーナー 3,300円（税込）", "place": "branshes店舗・公式通販・楽天市場店・ZOZOTOWNなど", "note": "店舗によって販売開始が遅れる場合があります。サイズや販売状況は公式情報をご確認ください。", "url": "https://www.sanrio.co.jp/news/goods/mm-ku-branshes-20261009/"}, {"id": "halloween", "category": "コラボ", "icon": "✦", "published": "2026-10-05", "title": "モンシェールの「フレンドリーハロウィン」", "summary": "堂島ロールにマイメロディとクロミのムースを合わせた季節限定スイーツ。クロミはブルーベリー入りのレアチーズ風味です。", "timing": "2026年10月16日〜10月31日販売予定／予約受付中（確認時点）", "release": "2026-10-16", "price": "2個セット 2,160円（税込）", "place": "モンシェール直営店（一部店舗を除く）", "note": "堀川納屋橋店・新大阪店・空港店舗・27℃は対象外。予約方法は公式案内をご確認ください。", "url": "https://www.sanrio.co.jp/news/goods/mm-ku-moncher-20261005/"}, {"id": "black-mode", "category": "新商品", "icon": "♡", "published": "2026-09-30", "title": "まっくろクロミモードシリーズ", "summary": "モノクロの装いを楽しむクロミのシリーズ。ぬいぐるみやバッグ、文房具などが展開されています。", "timing": "2026年10月8日発売", "release": "2026-10-08", "price": "ぬいぐるみ 5,500円／マスコットホルダー 各2,596円（税込）", "place": "サンリオ直営店・百貨店のサンリオコーナー・オンラインショップなど", "note": "一部店舗では取り扱いがありません。購入個数の制限があるため、公式案内を確認してください。", "url": "https://www.sanrio.co.jp/news/goods/ku-all-black-kuromi-mode-202610/?id=i27"}, {"id": "lottery", "category": "新商品", "icon": "☆", "published": "2026-09-24", "title": "クロミ当りくじ：10月3日から順次発売", "summary": "ヒョウ柄を取り入れたクロミの当りくじ。毛布やコスメケース、ポーチなどがラインナップされています。", "timing": "2026年10月3日から順次発売", "release": "2026-10-03", "price": "1回880円（税込）", "place": "全国のサンリオショップ・コンビニエンスストアほか", "note": "開始日・取り扱い・在庫は店舗ごとに異なります。公式ページの店舗案内をご確認ください。", "url": "https://www.sanrio.co.jp/news/goods/ku-atarikuji-20260924/"}];
+const checked='2026年10月10日';
 const pages=[...document.querySelectorAll('.page')],nav=[...document.querySelectorAll('nav button')];
-function go(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0)}
+let category='すべて',articleReturn='news';
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function card(a){return `<div class="card feature"><div class="thumb" aria-hidden="true">${esc(a.icon)}</div><div><button class="article-open" data-article="${esc(a.id)}"><span class="badge">${esc(a.category)}</span><div class="title">${esc(a.title)}</div><div class="muted">公式発表：${esc(a.published.replaceAll('-','/'))}</div><div class="muted">${esc(a.summary)}</div><div class="muted">詳細を読む →</div></button></div></div>`}
+function renderNews(){const q=document.getElementById('siteSearch').value.trim().toLocaleLowerCase();const list=articles.filter(a=>(category==='すべて'||a.category===category)&&[a.title,a.summary,a.place,a.category].join(' ').toLocaleLowerCase().includes(q));document.getElementById('newsArticles').innerHTML=list.map(card).join('')||'<div class="card notice">該当する記事はありません。別のキーワードやカテゴリーをお試しください。</div>';document.getElementById('newsCount').textContent=`${list.length}件${q?'（検索：'+q+'）':''}`;document.querySelectorAll('[data-category]').forEach(b=>{const active=b.dataset.category===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))})}
+function go(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.page===id||(id==='article'&&b.dataset.page==='news')));if(id==='news')renderNews();window.scrollTo(0,0)}
+function openArticle(id){const a=articles.find(a=>a.id===id);if(!a)return;articleReturn=document.querySelector('.page.active').id==='home'?'home':'news';document.getElementById('articleBack').textContent=articleReturn==='home'?'← ホームに戻る':'← 一覧に戻る';document.getElementById('articleContent').innerHTML=`<span class="badge">${esc(a.category)}</span><h1 class="detail-title">${esc(a.title)}</h1><p class="muted">公式発表：${esc(a.published.replaceAll('-','/'))}｜最終確認：${checked}</p><p class="article-summary">${esc(a.summary)}</p><dl class="detail-meta"><dt>発売日・販売期間</dt><dd>${esc(a.timing)}</dd><dt>価格</dt><dd>${esc(a.price)}</dd><dt>取り扱い</dt><dd>${esc(a.place)}</dd></dl><p class="notice">${esc(a.note)}</p><a class="source-link" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">サンリオの公式情報を確認する ↗</a><p class="notice">出典：サンリオ公式サイト。RIBUNOTEが要約して掲載しています。販売期間や価格は変更される場合があります。最新の内容は公式ページをご確認ください。</p>`;go('article')}
+document.getElementById('homeArticles').innerHTML=articles.slice(0,3).map(card).join('');
 nav.forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
-document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
-document.getElementById('searchToggle').addEventListener('click',()=>document.getElementById('searchBox').classList.toggle('show'));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.go==='news'){category=b.dataset.filter||'すべて';document.getElementById('siteSearch').value=''}go(b.dataset.go)}));
+document.addEventListener('click',e=>{const b=e.target.closest('[data-article]');if(b)openArticle(b.dataset.article);const f=e.target.closest('[data-category]');if(f){category=f.dataset.category;renderNews()}});
+document.getElementById('articleBack').addEventListener('click',()=>go(articleReturn));
+document.getElementById('searchToggle').addEventListener('click',()=>{const box=document.getElementById('searchBox');box.classList.toggle('show');document.getElementById('searchToggle').setAttribute('aria-expanded',String(box.classList.contains('show')));if(box.classList.contains('show'))document.getElementById('siteSearch').focus()});
 document.getElementById('goodsSearch').addEventListener('click',()=>document.getElementById('result').textContent=document.getElementById('cat').value+' の検索結果をここに表示します。現在は開発用サンプルです。');
+document.getElementById('siteSearch').addEventListener('input',()=>{category='すべて';go('news')});
 document.getElementById('siteSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){go('news');e.target.blur()}});
+renderNews();
 </script>
 </body>
 </html>
