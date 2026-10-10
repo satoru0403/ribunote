@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#fffafd">
+<meta name="theme-color" content="#24152f">
 <title>RIBUNOTE | 開発版</title>
 <style>
 :root{--bg:#fffafd;--card:#fff;--ink:#29242e;--muted:#7b7280;--line:#eee5ef;--lav:#eee6ff;--lav2:#f7f2ff;--pink:#ffe8f2;--purple:#7455a5}
@@ -29,6 +29,22 @@ nav button{border:0;background:transparent;font-size:11px;color:var(--muted);min
 @media(min-width:650px){main{padding:24px}.hero{padding:32px}.hero h1{font-size:35px}.quick button{font-size:13px}}
 
 .article-open{border:0;background:transparent;text-align:left;padding:0;color:var(--ink);font:inherit;cursor:pointer;width:100%}.article-open:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--purple);outline-offset:3px}.article-open .title{font-size:16px}.feature>div:last-child{min-width:0}.article-open:hover .title{color:var(--purple)}.source-link{display:inline-block;color:var(--purple);font-weight:800;margin-top:12px;line-height:1.6}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filters button{border:1px solid var(--line);border-radius:999px;background:#fff;padding:10px 14px;color:var(--purple)}.filters button.active{background:var(--purple);color:#fff}.detail-meta{margin:20px 0}.detail-meta dt{font-size:12px;color:var(--muted);margin-top:16px}.detail-meta dd{margin:5px 0;line-height:1.7;overflow-wrap:anywhere}.detail-title{font-size:25px;line-height:1.5}.backbtn{border:0;background:transparent;color:var(--purple);padding:10px 0}.article-summary{font-size:14px;line-height:1.9}.checked{margin:8px 0 16px}.search-label{font-size:12px;color:var(--muted)}
+/* Purple, black and pink accents with a light reading surface. */
+:root{--bg:#e9d5ff;--card:#fffaff;--ink:#2e1b3c;--muted:#675371;--line:#dbc4ee;--lav:#e6d0ff;--lav2:#f2e5ff;--pink:#ffc4e5;--purple:#773ba5}
+body{background-color:#24152f;background-image:radial-gradient(ellipse at 12% 18%,#7344a0 0,transparent 44%),radial-gradient(ellipse at 90% 72%,#82396c 0,transparent 42%),linear-gradient(145deg,#25162f,#3b2150);background-attachment:fixed}
+.app{position:relative;background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23924dc0' stroke-opacity='.13' stroke-width='1.5'%3E%3Cpath d='M28 43C7 29 17 16 28 26C39 16 49 29 28 43Z'/%3E%3Cpath d='M116 120C95 106 105 93 116 103C127 93 137 106 116 120Z'/%3E%3C/g%3E%3Cg fill='%23ad65c9' fill-opacity='.17'%3E%3Cpath d='m103 24 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z'/%3E%3Cpath d='m42 111 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(ellipse at top right,#ffc9e6 0,transparent 42%),linear-gradient(160deg,#dfc6fa,#f4d9ee 55%,#e2cef8);box-shadow:0 0 80px #14091e70}
+header{background:linear-gradient(115deg,#24152f,#3a214e);border-bottom:3px solid #c084df;box-shadow:0 5px 20px #3d18582b}
+.brand{color:#fff3ff;text-shadow:0 2px 12px #dc94fd38}.brand::first-letter{color:#ffa6d8}.sub{color:#e3c9ef}.searchbtn{flex-shrink:0;background:#58376b;border-color:#8a60a0;color:#fff0fc;box-shadow:inset 0 0 12px #f1a5e21a}
+.search-label{color:#eddbf5}.searchbox .field{border-color:#a678bc;background:#fff8ff}
+.hero{background:radial-gradient(ellipse at 100% 100%,#b74e91 0,transparent 65%),linear-gradient(125deg,#32203f,#6f359a);color:#fff6ff;border:1px solid #bd83dc;box-shadow:0 10px 26px #65338c38}
+.hero:after{top:1px;right:12px;font-size:116px;color:#f5b3de3b;transform:rotate(13deg);pointer-events:none}.hero:before{content:"✦";position:absolute;right:104px;top:23px;font-size:25px;color:#ffc9e9;pointer-events:none}.hero h1,.hero p,.eyebrow{position:relative;z-index:1}.eyebrow{color:#ffc7e6}.hero p{color:#efdef5}.hero h1{text-shadow:0 2px 8px #24152f40}
+.quick button{background:linear-gradient(145deg,#fff8ff,#f1dbff);border-color:#cda6e3;box-shadow:0 4px 10px #60308114;color:#653187}.quick span{color:#944ab7}.quick button:nth-child(even){background:linear-gradient(145deg,#fff8ff,#ffd7ec)}
+.section-head h2{position:relative;padding-left:12px}.section-head h2:before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:4px;border-radius:4px;background:linear-gradient(#8647b0,#e478b8)}
+.card{background:linear-gradient(135deg,#fffaff,#fff5fb);border-color:#d7b9e8;box-shadow:0 4px 14px #5d2b8012}.thumb{background:linear-gradient(145deg,#d8b7f3,#ffbedf);border:1px solid #cca0e2;color:#663780;box-shadow:inset 0 1px 0 #ffffff80}.badge{background:#ead8fa;color:#68308a;border:1px solid #d8b5ed}.datebox{background:linear-gradient(145deg,#e6cdfa,#f9d7e9);color:#632f85}.datebox small{color:#754986}
+.promo{background:linear-gradient(120deg,#2d1b3a,#593068);border:1px solid #ac75c5;box-shadow:0 6px 20px #61347c26}.promo b{color:#ffd1eb}.promo p{color:#ead4f2}
+.filters button{background:#fff5fe;border-color:#cca5e3}.filters button.active,.primary{background:linear-gradient(125deg,#693291,#a04295);color:#fff;box-shadow:0 4px 12px #773c9b26}
+nav{background:linear-gradient(110deg,#281831f7,#44254ef7);border-top:2px solid #bf83d4;box-shadow:0 -5px 22px #3c185828}nav button{color:#e5ceeb}nav button.active{color:#ffb5df;background:radial-gradient(ellipse at center,#b362c936,transparent 72%)}nav button.active .ico{text-shadow:0 0 12px #fbb1e299}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
